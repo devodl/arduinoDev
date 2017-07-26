@@ -1,0 +1,3 @@
+
+Use Arduino Uno to access HM-10
+source: http://blog.blecentral.com/2015/05/05/hm-10-peripheral/
