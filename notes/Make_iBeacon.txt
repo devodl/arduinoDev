@@ -1,0 +1,49 @@
+AT+ADDR?   D43639DF192A
+AT+NAME?   BEA01
+
+
+Source:  http://www.instructables.com/id/make-iBeacon/
+
+Now we have to write commands to configure module to ibeacon, 
+as you see on picture i make program to do it for me.(when i test it i will upload here)
+Open arduino ide, choose COM port (serial on mac) , open serial monitor and write these commands:
+
+1. AT+RENEW Restores factory defaults
+
+2. AT+RESET Reboot HM-10
+
+3. AT Wait for OK
+
+4. AT+MARJ0x1234 Set iBeacon Major number to 0x1234 (hexadecimal)  AT+MARJ0x002C   (0d0044)
+
+5. AT+MINO0xFA01 Set iBeacon Minor number to 0xFA01 (hexadecimal)  AT+MINO0x0001
+
+6. AT+ADVI5 Set advertising interval to 5 (546.25 milliseconds)
+
+7. AT+NAMEDOPEY Set HM-10 module name to DOPEY. Make this unique.  AT+NAMEBEA01
+
+8. AT+ADTY3 Make non-connectable (save power)
+
+9. AT+IBEA1 Enable iBeacon mode
+
+10.AT+DELO2 iBeacon broadcast-only (save power)
+
+11.AT+PWRM0 Enable auto-sleep. This reduces power from 8 to 0.18 mA
+
+12.AT+RESET Reboot
+
+You can change major , minor and name of the commands. 
+You can find more commands on this link: http://www.jnhuamao.cn/iBeacon_en.zip 
+The ibeacon is made now. Just disconnect wires from ftdi and put battery on vcc and gnd
+
+
+Wakeup HM-10
+When the HM-10 is in auto-sleep mode, it will quickly go to sleep when powered up or rebooted. 
+After sending it the AT+PWRM0 command and restarting it, the HM-10 will no longer respond to AT commands. 
+To wake up the device, send it along line of random alphabetic characters which is 80 characters or more. It will wake up and respond with OK+WAKE. 
+If you want to work with the device for awhile, send it an AT+PWRM1 command so it does not sleep on you. 
+You can then send it an AT+PWRM0 when you are done to reduce power consumption. 
+Have fun with your new iBeacon.
+
+
+
